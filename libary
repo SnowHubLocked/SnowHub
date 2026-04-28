@@ -122,6 +122,14 @@ function MacLib:Window(Settings)
 	baseUICorner.CornerRadius = UDim.new(0, 10)
 	baseUICorner.Parent = base
 
+	local baseGradient = Instance.new("UIGradient")
+baseGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 10, 10)),
+})
+baseGradient.Rotation = 135
+baseGradient.Parent = base
+
 	local baseUIStroke = Instance.new("UIStroke")
 	baseUIStroke.Name = "BaseUIStroke"
 	baseUIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
