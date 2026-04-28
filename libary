@@ -283,17 +283,19 @@ function MacLib:Window(Settings)
 
 	applyState(maximize, false)
 
-	local controlsList = {exit, minimize}
-	for _, button in pairs(controlsList) do
-		local buttonName = button.Name
-		local isEnabled = true
+	local controlsList = {exit}
+for _, button in pairs(controlsList) do
+    local buttonName = button.Name
+    local isEnabled = true
 
-		if Settings.DisabledWindowControls and table.find(Settings.DisabledWindowControls, buttonName) then
-			isEnabled = false
-		end
+    if Settings.DisabledWindowControls and table.find(Settings.DisabledWindowControls, buttonName) then
+        isEnabled = false
+    end
 
-		applyState(button, isEnabled)
-	end
+    applyState(button, isEnabled)
+end
+
+applyState(minimize, false)
 
 	controls.Parent = windowControls
 
