@@ -231,6 +231,7 @@ function MacLib:Window(Settings)
 	minimize.TextSize = 14
 	minimize.AutoButtonColor = false
 	minimize.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	minimize.BackgroundTransparency = 1
 	minimize.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	minimize.BorderSizePixel = 0
 	minimize.LayoutOrder = 1
@@ -1136,17 +1137,14 @@ function MacLib:Window(Settings)
 
 	local function UpdateOrientation(fetchProps)
 		if not IsVisible(frame) or not acrylicBlur or unloaded then
-			for _, pt in pairs(parts) do
-				pt.Parent = nil
-				DepthOfField.Enabled = false
-				DepthOfField.Parent = nil
-			end
-			return
-		end
-		if not DepthOfField.Parent then
-			DepthOfField.Parent = Lighting
-		end
-		DepthOfField.Enabled = true
+    for _, pt in pairs(parts) do
+        pt.Parent = nil
+        DepthOfField.Enabled = false
+        DepthOfField.Parent = nil
+    end
+    return
+end
+DepthOfField.Enabled = false
 		local properties = {
 			Transparency = 0.98;
 			BrickColor = BrickColor.new('Institutional white');
@@ -1191,7 +1189,7 @@ function MacLib:Window(Settings)
 
 	UpdateOrientation(true)
 
-	RunService.RenderStepped:Connect(UpdateOrientation)
+	-- RunService.RenderStepped:Connect(UpdateOrientation)
 
 	function WindowFunctions:GlobalSetting(Settings)
 		hasGlobalSetting = true
@@ -5322,7 +5320,7 @@ end
 
 	function WindowFunctions:SetAcrylicBlurState(State)
 		acrylicBlur = State
-		base.BackgroundTransparency = State and 0.05 or 0
+    	base.BackgroundTransparency = 0.3
 	end
 
 	function WindowFunctions:GetAcrylicBlurState()
